@@ -2,10 +2,8 @@ package com.gft.springmvcguru.springmvc.domain;
 
 import java.math.BigDecimal;
 
-/**
- * Created by jt on 11/6/15.
- */
-public class Product implements DomainObject{
+public class ProductExample {
+
     private Integer id;
     private String description;
     private BigDecimal price;
