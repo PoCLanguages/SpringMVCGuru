@@ -2,6 +2,8 @@ package com.gft.springmvcguru.springmvc.services.jpaservices;
 
 import com.gft.springmvcguru.springmvc.domain.Customer;
 import com.gft.springmvcguru.springmvc.services.CustomerService;
+import com.gft.springmvcguru.springmvc.services.security.EncryptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,21 @@ import java.util.List;
 
 @Service
 @Profile("jpadao")
-public class CustomerServiceJPADaoImpl implements CustomerService {
-    private EntityManagerFactory emf;
+public class CustomerServiceJPADaoImpl extends AbstractJpaDaoService implements CustomerService{
 
-    @PersistenceUnit
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
+//
+//    private EntityManagerFactory emf;
+//
+//    @PersistenceUnit
+//    public void setEmf(EntityManagerFactory emf) {
+//        this.emf = emf;
+//    }
+
+    private EncryptionService encryptionService;
+
+    @Autowired
+    public void setEncryptionService(EncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
     }
 
     @Override
@@ -39,6 +50,12 @@ public class CustomerServiceJPADaoImpl implements CustomerService {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
+
+        if (domainObject.getUser() != null && domainObject.getUser().getPassword() != null) {
+            domainObject.getUser().setEncryptedPassword(
+                    encryptionService.encryptString(domainObject.getUser().getPassword()));
+        }
+
         Customer savedCustomer = em.merge(domainObject);
         em.getTransaction().commit();
 

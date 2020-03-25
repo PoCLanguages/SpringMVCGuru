@@ -2,7 +2,6 @@ package com.gft.springmvcguru.springmvc.bootstrap;
 
 import com.gft.springmvcguru.springmvc.domain.Customer;
 import com.gft.springmvcguru.springmvc.domain.Product;
-import com.gft.springmvcguru.springmvc.domain.User;
 import com.gft.springmvcguru.springmvc.services.CustomerService;
 import com.gft.springmvcguru.springmvc.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,35 +76,28 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer1.setZipCode("33101");
         customer1.setEmail("micheal@burnnotice.com");
         customer1.setPhoneNumber("305.333.0101");
-
-        User user = new User();
-        user.setUsername("This is my user name");
-        user.setPassword("MyAwesomePassword");
-        customer1.setUser(user);
-
-
         customerService.saveOrUpdate(customer1);
-//
-//        Customer customer2 = new Customer();
-//        customer2.setFirstName("Fiona");
-//        customer2.setLastName("Glenanne");
-//        customer2.setAddressLine1("1 Key Biscane Ave");
-//        customer2.setCity("Miami");
-//        customer2.setState("Florida");
-//        customer2.setZipCode("33101");
-//        customer2.setEmail("fiona@burnnotice.com");
-//        customer2.setPhoneNumber("305.323.0233");
-//        customerService.saveOrUpdate(customer2);
-//
-//        Customer customer3 = new Customer();
-//        customer3.setFirstName("Sam");
-//        customer3.setLastName("Axe");
-//        customer3.setAddressLine1("1 Little Cuba Road");
-//        customer3.setCity("Miami");
-//        customer3.setState("Florida");
-//        customer3.setZipCode("33101");
-//        customer3.setEmail("sam@burnnotice.com");
-//        customer3.setPhoneNumber("305.426.9832");
-//        customerService.saveOrUpdate(customer3);
+
+        Customer customer2 = new Customer();
+        customer2.setFirstName("Fiona");
+        customer2.setLastName("Glenanne");
+        customer2.setAddressLine1("1 Key Biscane Ave");
+        customer2.setCity("Miami");
+        customer2.setState("Florida");
+        customer2.setZipCode("33101");
+        customer2.setEmail("fiona@burnnotice.com");
+        customer2.setPhoneNumber("305.323.0233");
+        customerService.saveOrUpdate(customer2);
+
+        Customer customer3 = new Customer();
+        customer3.setFirstName("Sam");
+        customer3.setLastName("Axe");
+        customer3.setAddressLine1("1 Little Cuba Road");
+        customer3.setCity("Miami");
+        customer3.setState("Florida");
+        customer3.setZipCode("33101");
+        customer3.setEmail("sam@burnnotice.com");
+        customer3.setPhoneNumber("305.426.9832");
+        customerService.saveOrUpdate(customer3);
     }
 }
