@@ -1,4 +1,4 @@
-package com.gft.springmvcguru.springmvc.services;
+package com.gft.springmvcguru.springmvc.services.mapservices;
 
 import com.gft.springmvcguru.springmvc.domain.DomainObject;
 
@@ -12,7 +12,7 @@ public abstract class AbstractMapService  {
 
     public AbstractMapService() {
         domainMap = new HashMap<>();
-        loadDomainObjects();
+//        loadDomainObjects();
     }
 
     public List<DomainObject> listAll() {
@@ -45,6 +45,6 @@ public abstract class AbstractMapService  {
         return Collections.max(domainMap.keySet()) + 1;
     }
 
-    protected abstract void loadDomainObjects();
+//    protected abstract void loadDomainObjects();
 
 }

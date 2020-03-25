@@ -1,6 +1,7 @@
-package com.gft.springmvcguru.springmvc.services;
+package com.gft.springmvcguru.springmvc.services.jpaservices;
 
 import com.gft.springmvcguru.springmvc.domain.Product;
+import com.gft.springmvcguru.springmvc.services.ProductService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Component
 @Profile("jpadao")
-public class ProductServiceJpaDaoImpl implements ProductService{
+public class ProductServiceJpaDaoImpl implements ProductService {
 
     private EntityManagerFactory emf;
 

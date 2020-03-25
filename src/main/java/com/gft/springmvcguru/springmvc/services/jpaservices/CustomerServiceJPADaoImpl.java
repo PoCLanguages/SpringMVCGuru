@@ -1,6 +1,7 @@
-package com.gft.springmvcguru.springmvc.services;
+package com.gft.springmvcguru.springmvc.services.jpaservices;
 
 import com.gft.springmvcguru.springmvc.domain.Customer;
+import com.gft.springmvcguru.springmvc.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @Profile("jpadao")
-public class CustomerServiceJPADaoImpl implements CustomerService{
+public class CustomerServiceJPADaoImpl implements CustomerService {
     private EntityManagerFactory emf;
 
     @PersistenceUnit

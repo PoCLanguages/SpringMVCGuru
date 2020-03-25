@@ -56,7 +56,13 @@
         </dependency>
 <!--        WebJarsFin-->
 
-
+        <!--encryption lib-->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <!--encryption final-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -73,6 +79,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util-lookup</artifactId>
+            <version>RELEASE112</version>
         </dependency>
     </dependencies>
 
