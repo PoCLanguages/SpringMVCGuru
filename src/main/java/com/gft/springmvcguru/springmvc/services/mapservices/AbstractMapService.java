@@ -15,6 +15,7 @@ public abstract class AbstractMapService  {
 //        loadDomainObjects();
     }
 
+
     public List<DomainObject> listAll() {
         return new ArrayList<>(domainMap.values());
     }

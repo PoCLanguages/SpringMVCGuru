@@ -25,17 +25,19 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
     }
 
     @Override
-    public List<?> listAll() {
+    public List<User> listAll() {
         EntityManager em = emf.createEntityManager();
+        List<User> lista = em.createQuery("from User", User.class).getResultList();
+        em.close();
 
-        return em.createQuery("from User", User.class).getResultList();
+        return lista;
     }
 
     @Override
     public User getById(Integer id) {
         EntityManager em = emf.createEntityManager();
-
-        return em.find(User.class, id);
+        User user = em.find(User.class, id);
+        return user;
     }
 
     @Override
