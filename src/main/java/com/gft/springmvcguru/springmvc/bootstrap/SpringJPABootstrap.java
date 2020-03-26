@@ -1,9 +1,11 @@
 package com.gft.springmvcguru.springmvc.bootstrap;
 
 import com.gft.springmvcguru.springmvc.domain.*;
+import com.gft.springmvcguru.springmvc.domain.security.Role;
 import com.gft.springmvcguru.springmvc.enums.OrderStatus;
 import com.gft.springmvcguru.springmvc.services.CustomerService;
 import com.gft.springmvcguru.springmvc.services.ProductService;
+import com.gft.springmvcguru.springmvc.services.RoleService;
 import com.gft.springmvcguru.springmvc.services.UserService;
 import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
 //    private CustomerService customerService;
     private ProductService productService;
     private UserService userService;
+    private RoleService roleService;
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -36,6 +39,11 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         this.userService = userService;
     }
 
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -43,7 +51,30 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         loadUsersAndCustomers();
         loadCarts();
         loadOrderHistory();
+        loadRoles();
+        assignUsersToDefaultRole();
     }
+
+    private void assignUsersToDefaultRole() {
+        List<Role> roles = (List<Role>) roleService.listAll();
+        List<User> users = (List<User>) userService.listAll();
+
+        roles.forEach(role ->{
+            if(role.getRole().equalsIgnoreCase("CUSTOMER")){
+                users.forEach(user -> {
+                    user.addRole(role);
+                    userService.saveOrUpdate(user);
+                });
+            }
+        });
+    }
+
+    private void loadRoles() {
+        Role role = new Role();
+        role.setRole("CUSTOMER");
+        roleService.saveOrUpdate(role);
+    }
+
 
     private void loadOrderHistory() {
         List<User> users = (List<User>) userService.listAll();
